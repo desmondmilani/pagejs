@@ -71,7 +71,7 @@ class TagCreator {
 }
 
 
-//////////////////////helper functions for web processes//////////////////////////
+//////////////////////helper functions for web processes by desmond 2022 July//////////////////////////
 //function to switch between pages
 const switchPage = (pageId, pageIds, displayType) => {
     let i = 0;
@@ -84,6 +84,31 @@ const switchPage = (pageId, pageIds, displayType) => {
             TagCreator.getTag(pageIds[i]).style.display = "none";
         }
     }
+}
+
+//function to display page as grid
+const switchPageGrid = (pageId, pageIds) => {
+    switchPage(pageId, pageIds, "grid");
+}
+
+//function to display page as flex
+const switchPageFlex = (pageId, pageIds) => {
+    switchPage(pageId, pageIds, "flex");
+}
+
+//function to display page as block
+const switchPageBlock = (pageId, pageIds) => {
+    switchPage(pageId, pageIds, "block");
+}
+
+//function to display page as inline-block
+const switchPageInlineBlock = (pageId, pageIds) => {
+    switchPage(pageId, pageIds, "inline-block");
+}
+
+//function to display page as inline
+const switchPageInline = (pageId, pageIds) => {
+    switchPage(pageId, pageIds, "inline");
 }
 
 //function to create a header with just img, heading and slogan
@@ -102,5 +127,29 @@ const createHeader = (id, imagePath, heading, slogan) => {
     header.appendChild(hgroup);
 
     return header;
+}
+
+//class for pages and the links
+class PageLink {
+    constructor(title, link) {
+        this.title = title;
+        this.link = link;
+    }
+}
+
+//function to create a navigation bar
+const createNav = (id, pageLinks) => {
+    let nav = TagCreator.createEmptyTag(id, "nav");
+
+    let i = 0;
+    let length = pageLinks.length;
+
+    for (i; i < length; i++) {
+        let navItem = TagCreator.createTagWithText(id+"-" + i, "a", pageLinks[i].title);
+        navItem.href = pageLinks[i].link;
+        nav.appendChild(navItem);
+    }
+
+    return nav;
 }
 
