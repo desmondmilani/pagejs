@@ -86,3 +86,21 @@ const switchPage = (pageId, pageIds, displayType) => {
     }
 }
 
+//function to create a header with just img, heading and slogan
+const createHeader = (id, imagePath, heading, slogan) => {
+    let header = TagCreator.createEmptyTag(id, "header");
+    let img = TagCreator.createEmptyTag(id + "-img", "img");
+    img.src = imagePath;
+    let h1 = TagCreator.createH1(id +"-heading", heading);
+    let h2 = TagCreator.createH2(id+"-slogan", slogan);
+
+    let hgroup = TagCreator.createEmptyTag(id+"-hgroup", "hgroup");
+    hgroup.appendChild(h1);
+    hgroup.appendChild(h2);
+
+    header.appendChild(img);
+    header.appendChild(hgroup);
+
+    return header;
+}
+
