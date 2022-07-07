@@ -27,6 +27,11 @@ class TagCreator {
         return value;
     }
 
+    //function to render one tag to another
+    static render = (childId, parentId) => {
+        this.getTag(parentId).appendChild(this.getTag(childId));
+    }
+
     //function to create h1
     static createH1 = (id, text) => {
         let tag = this.createTagWithText(id, "h1", text);
@@ -64,3 +69,20 @@ class TagCreator {
     }
 
 }
+
+
+//////////////////////helper functions for web processes//////////////////////////
+//function to switch between pages
+const switchPage = (pageId, pageIds, displayType) => {
+    let i = 0;
+    let length = pageIds.length;
+
+    for (i; i < length; i++) {
+        if (pageIds[i] === pageId) {
+            TagCreator.getTag(pageIds[i]).style.display = displayType;
+        } else {
+            TagCreator.getTag(pageIds[i]).style.display = "none";
+        }
+    }
+}
+
